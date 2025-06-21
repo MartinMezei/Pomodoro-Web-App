@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../images/site-logo.png">
+    <title>Study Time</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google fonts embed code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+
+<body>
+    <!-- HEADER -->
+    <header>
+
+        <div class="wrapper" id="site-logo">
+            <a href="index.html">
+                <img src="../images/site-logo.png" alt="">
+            </a>
+            <!-- TODO: will be changed for something different -->
+        </div>
+        <div class="wrapper" id="site-title">
+            <h1>Study Time</h1>
+        </div>
+        <div class="wrapper" id="header-buttons">
+            <!-- TODO: after clicking a pop-up window will be opened over the site, right in the middle. User can change various settings here -->
+            <button class="button" id="settings-button">Settings</button>
+            <button class="button" id="todo-toggle-button">Hide To-Do List</button>
+            <!-- TODO: after clicking all sound from the website will be turned off -->
+            <button class="button" id="sound-toggle-button">Sound Off</button>
+        </div>
+
+    </header>
+
+
+    <!-- TIMER -->
+
+    <!-- Main content of the web site consists of the pomodoro timer and a to-do list which is only visible after user allows it to be shown -->
+    <!-- Timer is always visible and consists of the main timer, a counter that tracks how much time has the user spent in 
+     full focus mode and several buttons to control the tiemr -->
+    <main>
+        <section id="timer">
+
+            <!-- displays the time of a current break or studying session -->
+            <div class="wrapper">
+                <span id="current-mode-display">Full Focus</span>
+            </div>
+            <div class="wrapper">
+                <span id="big-timer"></span>
+            </div>
+            <!-- displays the total time of studying, basically a sum of all studying session -->
+            <div class="wrapper">
+                <span id="total-time-studied">Time Spent Studying</span>
+                <span id="small-timer">00:00</span>
+            </div>
+
+            <!-- TIME SETTING BUTTONS -->
+            <div id="buttons-wrapper">
+                <div class="button-wrapper">
+                    <!-- used to set current timer mode to focus period -->
+                    <button id="focus-button">Full Focus</button>
+                </div>
+                <div class="button-wrapper">
+                    <!-- used to set current timer mode to short break -->
+                    <button id="short-break-button">Short Break</button>
+                </div>
+                <div class="button-wrapper">
+                    <!-- used to set current timer mode to long break -->
+                    <button id="long-break-button">Long Break</button>
+                </div>
+                <div class="button-wrapper">
+                    <!-- this button is used to either start the timer or pause it -->
+                    <!-- text displayed on the button will be changed from start to pause or the other way around -->
+                    <button id="timer-toggle-button">Start</button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- TO-DO LIST -->
+
+        <section id="todo-list">
+            <!-- to-do list item are probably going to be added via JS -->
+
+            <h2>
+                To-Do List
+            </h2>
+
+            <div id="add-task-input-wrapper">
+                <label for="input">Add a Task:</label>
+                <!-- Text input -->
+                <input type="text" placeholder="Task Description Here" id="add-task-input">
+                <!-- Add task button -->
+                <button id="add-task-button">+</button>
+            </div>
+
+            <!-- list of tasks -->
+            <div id="task-list">
+                <!-- <div class="task">
+                    <p>1. task</p>
+                    <button class="delete-task-button" id="1">-</button>
+                </div> -->
+            </div>
+            <!-- ?Add a completed task counter-->
+        </section>
+    </main>
+
+    <!-- SETTINGS MENU -->
+
+    <!-- TODO: blur out rest of the website except the settings menu -->
+    <!-- TODO:  -->
+
+    <section id="settings-menu">
+
+        <h2>Settings</h2>
+
+        <div>
+
+        </div>
+
+    </section>
+
+
+    <button id="full-screen-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"/></svg></button>
+
+    <!-- SCRIPTS -->
+    <script src="../js/timer.js"></script>
+    <script src="../js/header-buttons.js"></script>
+    <script src="../js/todo-list.js"></script>
+    <script src="../js/full-screen-btn.js"></script>
+</body>
+
+</html>
