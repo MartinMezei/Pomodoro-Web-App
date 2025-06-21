@@ -3,14 +3,15 @@
 
 //**GLOBAL VARIABLES**//
 
-const taskList = document.getElementById("task-list")
+const incompleteTasksList = document.getElementById("incomplete-tasks-list");
+const completeTasksList = document.getElementById("complete-tasks-list");
 const textInput = document.getElementById("add-task-input");
 // currentTaskId is not to be decremented because there is a possibility of task id duplicates
 // with each currentTaskId increment a new id is created
 let currentTaskId = 0;
 // counts how many task are currently active
-let activeTasksCounter = 0;
-let completedTaskCounter = 0;
+let incompleteTasksCounter = 0;
+let completeTasksCounter = 0;
 
 
 //**FUNCTION DEFINITIONS**//
@@ -21,35 +22,41 @@ let completedTaskCounter = 0;
 function addNewTask(userInput) {
 
     // creates new elements
-    const taskDiv = document.createElement("div");
+    const listItem = document.createElement("li");
+    const checkbox = document.createElement("input");
     const taskDescription = document.createElement("p");
     const deleteBtn = document.createElement("button");
-    // class assignments
-    taskDiv.className = 'task';
+
+    // class and attributes assingnments
+    checkbox.type = "checkbox";
+    checkbox.name = "checkbox";
+    checkbox.className = "incomplete";
     deleteBtn.className = 'delete-task-button';
     // same if is assigned to taskDiv and its deleteBtn
-    taskDiv.id = `${currentTaskId}`;
-    deleteBtn.id = `${currentTaskId}`
+    listItem.id = `${currentTaskId}`;
+    deleteBtn.id = `${currentTaskId}`;
+    checkbox.id = `${currentTaskId}`;
     // text contents of new elements
     deleteBtn.textContent = "-"
     taskDescription.textContent = `${userInput}`;
 
-    // appending new elements taskDiv
-    taskDiv.appendChild(taskDescription);
-    taskDiv.appendChild(deleteBtn);
+    // appending new elements listItem
+    listItem.appendChild(checkbox);
+    listItem.appendChild(taskDescription);
+    listItem.appendChild(deleteBtn);
     // appending new task to taskList
-    taskList.appendChild(taskDiv);
+    incompleteTasksList.appendChild(listItem);
 
     currentTaskId++;
-    activeTasksCounter++;
+    incompleteTasksCounter++;
 
     // if number of tasks is higher than 4 overflow is set to scroll
-    if (activeTasksCounter > 4) {
-        document.getElementById("task-list").style.overflowY = "scroll";
+    if (incompleteTasksCounter > 4) {
+        document.getElementById("incomplete-tasks-list").style.overflowY = "scroll";
     }
 }
 
-// returns user input from add-task-input
+// gets and parses user input from add-task-input
 function getUserInput() {
     return textInput.value.trim()
 }
@@ -84,13 +91,30 @@ function inputBackToOriginalState() {
     textInput.placeholder = "Task Description Here"
 }
 
+// moves tasks between complete and incomplete task lists
+// changes attributes of task items according to their current state
+function moveTask(taskToMove) {
+    
+    if (taskToMove.className == "incomplete") {
+        incompleteTasksCounter--;
+        completeTasksCounter++;
+        taskToMove.className == "complete";
+        completeTasksList.appendChild(taskToMove);
+        incompleteTasksList.removeChild(taskToMove);
+    } else if (taskToMove.className == "complete") {
+        incompleteTasksCounter++;
+        completeTasksCounter--;
+        taskToMove.className == "incomplete";
+        completeTasksList.removeChild(taskToMove);
+        incompleteTasksList.appendChild(taskToMove);
+    }
+}
 
-//**Get task description from the user**/ 
 
 //**Adding tasks via the add-task-button**//
 document.getElementById("add-task-button").addEventListener("click", function () {
 
-    let userInput = getUserInput();
+    let userInput = getUserInput(); // input from add-task-input
 
     if (userInput === '' || userInput === null) { // no input found
         inputErrorHandler(1);
@@ -104,21 +128,39 @@ document.getElementById("add-task-button").addEventListener("click", function ()
 });
 
 //**Removing tasks**//
-document.getElementById("task-list").addEventListener("click", function (event) {
+document.getElementById("tasks-lists-wrapper").addEventListener("click", function (event) {
     if (event.target.className == "delete-task-button") {
         // gets the Id from a deleteBtn that was clicked
         // this id can be used to identify a specific task
         const taskId = event.target.id;
         // finds a specific taskDiv to remove
-        const taskDivToRemove = document.getElementById(taskId);
+        const taskToRemove = document.getElementById(taskId);
         //removes the task
-        taskDivToRemove.remove();
-
-        activeTasksCounter--;
+        taskToRemove.remove();
+        incompleteTasksCounter--;
     }
 
     // disables overflow scroll if scrolling is not needed
-    if (activeTasksCounter <= 4) {
+    if (incompleteTasksCounter <= 4) {
+        document.getElementById("task-list").style.overflowY = "hidden";
+    }
+});
+
+// todo : checkbox class changing not working
+// todo : check if this approach to detect checking the box is good
+//**Moving tasks between todo and done**/
+document.getElementById("tasks-lists-wrapper").addEventListener("click", function (event) {
+    if (event.target.name == "checkbox") {
+        // gets the Id from a checkbox that was clicked
+        // this id can be used to identify a specific task
+        const taskId = event.target.id;
+        // finds a specific taskItem to move
+        const taskToMove = document.getElementById(taskId);
+        moveTask(taskToMove);
+    }
+
+    // disables overflow scroll if scrolling is not needed
+    if (incompleteTasksCounter <= 4) {
         document.getElementById("task-list").style.overflowY = "hidden";
     }
 });
