@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    
+
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -92,7 +92,7 @@
             <!-- to-do list item are probably going to be added via JS -->
 
             <h2>
-                To-Do List
+                Tasks
             </h2>
 
             <div id="add-task-input-wrapper">
@@ -104,13 +104,24 @@
             </div>
 
             <!-- list of tasks -->
-            <div id="task-list">
-                <!-- <div class="task">
-                    <p>1. task</p>
-                    <button class="delete-task-button" id="1">-</button>
-                </div> -->
+
+            <div id="tasks-lists-wrapper">
+                <!-- INCOMPLETE TASKS -->
+                <div class="incomplete-tasks-list-wrapper">
+                    <h3>To-Do:</h3>
+                    <ul class="task-list" id="incomplete-tasks-list">
+
+                    </ul>
+                </div>
+
+                <!-- COMPLETE TASKS -->
+                <div class="complete-tasks-list-wrapper">
+                    <h3>Done:</h3>
+                    <ul class="task-list" id="complete-tasks-list">
+                    </ul>
+                </div>
             </div>
-            <!-- ?Add a completed task counter-->
+
         </section>
     </main>
 
@@ -130,7 +141,11 @@
     </section>
 
 
-    <button id="full-screen-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"/></svg></button>
+    <button id="full-screen-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#e3e3e3">
+            <path
+                d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z" />
+        </svg></button>
 
     <!-- SCRIPTS -->
     <script src="../js/timer.js"></script>

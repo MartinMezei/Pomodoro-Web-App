@@ -121,7 +121,6 @@ header img {
     padding-bottom: 1rem;
 }
 
-
 /* Task adding */
 #add-task-input-wrapper {
     height: 2.2rem;
@@ -132,11 +131,11 @@ header img {
     margin-bottom: 2rem;
 }
 
-#add-task-input-wrapper > * {
+#add-task-input-wrapper>* {
     margin: 0rem;
 }
 
-#add-task-input{
+#add-task-input {
     flex-grow: 1;
     padding: 0.5rem;
     font-size: 1.3rem;
@@ -151,7 +150,7 @@ header img {
     opacity: 0.9;
 }
 
-#add-task-button{
+#add-task-button {
     width: 2rem;
     height: 100%;
     border-radius: 0.5rem;
@@ -160,35 +159,52 @@ header img {
 
 /* Task tracking */
 
-#task-list {
-    height: 60%;
+#tasks-lists-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.task-list {
+    height: auto;
     overflow-y: none;
+    width: 100%;
+}
+
+#complete-tasks-list {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.task-list li>* {
+    margin: 0rem;
+    padding: 0rem;
+}
+
+.task-list li {
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    list-style: none;
+    margin: 0.5rem 0rem;
+}
+
+.task-list li input {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+#todo-list h3 {
+    font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 0.8rem;
 }
 
 /* To-do list items style */
-.task {
-    /* position absolute used to position delete-task-button */
-    position: relative; 
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-    padding: 0.7rem 1rem;
-    margin-bottom: 0.8rem;
-    margin-right: 0.5rem;
-    background-color: transparent;
-    border: solid 1px #B25CA0;
-    border-radius: 1rem;
-}
-
-.task p {
-    text-align: left;
-    margin: 0rem;
-}
 
 .delete-task-button {
-    /* positioned relative to its container */
-    position: absolute;
-    left: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 2rem;
     height: 2rem;
     border-radius: 0.5rem;
