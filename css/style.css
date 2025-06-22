@@ -115,6 +115,12 @@ header img {
     display: block;
 }
 
+#todo-list h3 {
+    font-size: 2.5rem;
+    text-align: left;
+}
+
+
 #todo-list h2 {
     font-size: 5rem;
     text-align: center;
@@ -159,48 +165,57 @@ header img {
 
 /* Task tracking */
 
+/* wraps the entirity of the task list section of the todo list */
 #tasks-lists-wrapper {
     display: flex;
-    gap: 1rem;
+    gap: 5rem;
+    padding: 0rem 3rem;
 }
 
-.task-list {
-    height: auto;
-    overflow-y: none;
+/* both lists have no margin and no padding */
+#tasks-lists-wrapper>* {
+    margin: 0rem;
+    padding: 0rem;
     width: 100%;
 }
 
-#complete-tasks-list {
-    text-decoration: line-through;
-    opacity: 0.7;
+/* by default task list has overflow hidden and if it is needed scrollbar will be
+added via JavaScript */
+.task-list {
+    height: auto;
+    overflow-y: none;
 }
 
+/* style of list items in completed tasks list */
+#complete-tasks-list p {
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+/* styling of task list items */
+.task-list li {
+    display: flex;
+    gap: 1rem;
+    justify-content: left;
+    align-items: center;
+    margin: 0.5rem 0rem;
+    font-size: 1.7rem;
+    list-style: none;
+}
+
+/* all items in inside of a task list item have no margin or padding */
 .task-list li>* {
     margin: 0rem;
     padding: 0rem;
 }
 
-.task-list li {
-    display: flex;
-    align-items: center;
-    font-size: 1.7rem;
-    list-style: none;
-    margin: 0.5rem 0rem;
-}
-
+/* checkbox styling */
 .task-list li input {
     width: 1.2rem;
     height: 1.2rem;
 }
 
-#todo-list h3 {
-    font-size: 2.5rem;
-    text-align: left;
-    margin-bottom: 0.8rem;
-}
-
-/* To-do list items style */
-
+/* To-do list delete button styling */
 .delete-task-button {
     display: flex;
     justify-content: center;
@@ -209,6 +224,7 @@ header img {
     height: 2rem;
     border-radius: 0.5rem;
     padding: 0rem;
+    font-size: 1rem;
 }
 
 /** TIMER **/
@@ -259,13 +275,11 @@ header img {
     background-color: rgb(20, 20, 20);
     border: solid #2E113A 2px;
     border-radius: 5%;
-
-
-    /* temporary */
+    /* !temporary */
     visibility: hidden;
 }
 
-/**Full screen button**/
+/**FULL SCREEN BUTTON**/
 
 #full-screen-btn {
     /* button positioned in the bottom right corner */
