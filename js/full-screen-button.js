@@ -4,21 +4,21 @@ const elem = document.documentElement;
 let fullScreen = false;
 
 // turns on full screen mode
-function openFullScreen(){
+function openFullScreen() {
     elem.requestFullscreen();
 }
 
 // turns off full screen mode
-function closeFullScreen(){
-    elem.closeFullScreen();
+function closeFullScreen() {
+    document.exitFullscreen();
 }
 
-document.getElementById("full-screen-btn").click(function(){
+document.getElementById("full-screen-btn").addEventListener("click", function () {
+
     fullScreen = !fullScreen;
-    
-    if (fullScreen){
-        closeFullScreen();
-    } else {
+    if (fullScreen) {
         openFullScreen();
+    } else {
+        closeFullScreen();
     }
-});
+}); 
