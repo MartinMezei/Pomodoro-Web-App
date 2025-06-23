@@ -1,6 +1,5 @@
 // todo : adding tasks by pressing Enter key
 // todo : confirm before removing
-// todo : list overflow handling
 
 //**GLOBAL VARIABLES**//
 
@@ -10,6 +9,8 @@ const textInput = document.getElementById("add-task-input");
 // currentTaskId is not to be decremented because there is a possibility of task id duplicates
 // with each currentTaskId increment a new id is created
 let currentTaskId = 0;
+// let incompleteTasksCounter = 0;
+// let completeTasksCounter = 0;
 
 //**FUNCTION DEFINITIONS**//
 
@@ -78,7 +79,6 @@ function inputBackToOriginalState() {
     textInput.placeholder = "Task Description Here"
 }
 
-
 //**Adding tasks via the add-task-button**//
 document.getElementById("add-task-button").addEventListener("click", function () {
 
@@ -92,7 +92,6 @@ document.getElementById("add-task-button").addEventListener("click", function ()
         inputBackToOriginalState();
         addNewTask(userInput);
     }
-
 });
 
 //**Actions performed in task lists**//

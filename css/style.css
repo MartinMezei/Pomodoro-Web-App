@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+
 html {
     color: white;
     font-family: "Quicksand", sans-serif;
@@ -68,7 +69,7 @@ header {
     box-sizing: border-box;
     width: 100%;
     padding: 1rem 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 10vh;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -111,10 +112,6 @@ header img {
 
 /** TO-DO LIST **/
 
-#todo-list {
-    display: block;
-}
-
 #todo-list h3 {
     font-size: 2.5rem;
     text-align: left;
@@ -143,7 +140,7 @@ header img {
 
 #add-task-input {
     flex-grow: 1;
-    padding: 0.5rem;
+    padding: 1rem;
     font-size: 1.3rem;
     color: white;
     background-color: transparent;
@@ -170,6 +167,7 @@ header img {
     display: flex;
     gap: 5rem;
     padding: 0rem 3rem;
+    height: 60%;
 }
 
 /* both lists have no margin and no padding */
@@ -177,13 +175,7 @@ header img {
     margin: 0rem;
     padding: 0rem;
     width: 100%;
-}
-
-/* by default task list has overflow hidden and if it is needed scrollbar will be
-added via JavaScript */
-.task-list {
-    height: auto;
-    overflow-y: none;
+    overflow: auto;
 }
 
 /* style of list items in completed tasks list */
