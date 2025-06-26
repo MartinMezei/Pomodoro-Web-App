@@ -69,7 +69,7 @@ main>section {
 header {
     box-sizing: border-box;
     width: 100%;
-    padding: 1rem 3rem;
+    padding: 1rem 10rem;
     margin-bottom: 10vh;
 
     display: grid;
@@ -83,13 +83,14 @@ header {
 /* logo image */
 header img {
     height: 8rem;
-    max-width: 100%;
     background-color: white;
     border: solid transparent;
     border-radius: 50%;
 }
 
 #site-logo {
+    display: flex;
+    justify-content: center;
     transition: 0.4s;
 }
 
@@ -107,6 +108,7 @@ header img {
 /* header buttons */
 #header-buttons {
     display: flex;
+    justify-content: center;
     gap: 1.2rem
 }
 
