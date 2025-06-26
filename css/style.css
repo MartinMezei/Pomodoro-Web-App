@@ -1,6 +1,6 @@
 * {
-    margin: auto;
-    padding: 0;
+    margin: 0rem 0rem;
+    padding: 0rem;
 }
 
 
@@ -13,11 +13,12 @@ html {
 }
 
 body {
+    min-height: 100vh;
     width: 100%;
     background-image: url("../images/neon-city-bg.jpg");
     background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-position: top;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,8 +55,8 @@ main {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: center;
+    gap: 10rem;
 }
 
 main>section {
@@ -280,11 +281,10 @@ header img {
     right: 2.5%;
     height: 5rem;
     width: 5rem;
-    /* svg inside the button aligned to center via display flex */
-    display: flex;
 }
 
 #full-screen-btn svg {
+    margin: auto;
     height: 2.5rem;
     width: 2.5rem;
 }
