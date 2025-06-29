@@ -1,7 +1,6 @@
-// todo : implement sounds and mute unmute functions
 // todo : implement changes of settings menu visibility
 
-let soundOn = true;
+export let soundOn = true;
 let settingsVisible = false;
 let todoListVisible = true;
 

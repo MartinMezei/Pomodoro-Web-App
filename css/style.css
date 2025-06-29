@@ -68,7 +68,7 @@ main {
 /* note: other styles specific to each section are located further down the code */
 #timer, #todo-list{
     min-width: 45rem;
-    max-height: 55rem;
+    max-height: 50vh;
     min-height: 30%;
 
     display: flex;
@@ -303,16 +303,17 @@ header img {
 #full-screen-btn {
     /* button positioned in the bottom right corner */
     position: absolute;
+    display: block;
     bottom: 5%;
     right: 2.5%;
-    height: 4rem;
-    width: 4rem;
+    height: clamp(30px, 4rem, 80px);
+    width: clamp(30px, 4rem, 80px);
 }
 
 #full-screen-btn svg {
     margin: auto;
-    height: 2rem;
-    width: 2rem;
+    height: clamp(15px, 2rem, 40px);
+    width: clamp(15px, 2rem, 40px);
 }
 
 

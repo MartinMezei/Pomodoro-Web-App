@@ -2,6 +2,8 @@
 // todo : switch implicit time values in minutes with a time variable
 
 //**GLOBAL VARIABLES**//
+import { soundOn } from "./header-buttons.js";
+const intervalCompleteAudio = new Audio("../sounds/interval-complete.mp3");
 
 // implicit value of focusTime is 25 minutes
 // implicit value of shortBreak is 5 minutes
@@ -19,7 +21,7 @@ let fullFocusCount = 0; // counts how many full focus cycles were done to calcul
 // 0 - focus mode
 // 1 - short break mode
 // 2 - long break mode
-let defaultTimerMode = 0; // by default timer mode is set to focus mode
+let timerMode = 0; // by default timer mode is set to focus mode
 let defaultModeTime = focusTime * 60; // currentModeTime is set to 25 by default
 let timeRemaining = defaultModeTime // time remaining in the timer countdown, by default set to the value of currentModeTime
 document.getElementById("big-timer").textContent = timeFormatter(defaultModeTime);
@@ -92,8 +94,14 @@ async function countDown() {
         await delay(1000);
     }
     // countdown ended successfully
-    fullFocusCount++; // one full focus cycle was completed
-    timeSpentStudyingHandler(focusTime); // calculates current total full focus time and displays it on the website
+    if (timerMode == 0) {
+        fullFocusCount++; // one full focus cycle was completed
+        timeSpentStudyingHandler(focusTime); // calculates current total full focus time and displays it on the website
+    }
+
+    if (soundOn) {
+        intervalCompleteAudio.play()
+    }
     reset(); // reseting the timer to its original state
 }
 
@@ -110,7 +118,7 @@ document.getElementById("focus-button").onclick = function () {
     document.getElementById("current-mode-display").textContent = "Full Focus";
 
     // mode charateristics are set
-    defaultTimerMode = 0;
+    timerMode = 0;
     defaultModeTime = focusTime * 60;
 
     // timer is reset to its original state
@@ -123,7 +131,7 @@ document.getElementById("short-break-button").onclick = function () {
     document.getElementById("current-mode-display").textContent = "Short Break";
 
     // mode charateristics are set
-    defaultTimerMode = 1; // short break mode value
+    timerMode = 1; // short break mode value
     defaultModeTime = shortBreak * 60 // time based on the mode is converted to secs
 
     // timer is reset to its original state
@@ -136,7 +144,7 @@ document.getElementById("long-break-button").onclick = function () {
     document.getElementById("current-mode-display").textContent = "Long Break";
 
     // mode charateristics are set
-    defaultTimerMode = 2; // long break mode value
+    timerMode = 2; // long break mode value
     defaultModeTime = longBreak * 60 // time based on the mode is converted to secs
 
     // timer is reset to its original state

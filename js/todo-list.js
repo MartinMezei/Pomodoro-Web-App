@@ -1,7 +1,8 @@
-// todo : adding tasks by pressing Enter key
 // todo : confirm before removing
 
 //**GLOBAL VARIABLES**//
+import {soundOn} from "./header-buttons.js";
+const taskCompleteAudio = new Audio("../sounds/task-complete.mp3");
 
 const incompleteTasksList = document.getElementById("incomplete-tasks-list");
 const completeTasksList = document.getElementById("complete-tasks-list");
@@ -128,6 +129,9 @@ document.getElementById("tasks-lists-wrapper").addEventListener("change", functi
 
         if (taskChildElement.checked) { //user checked the checkbox
             completeTasksList.appendChild(taskItem);
+            if (soundOn){
+                taskCompleteAudio.play();
+            }
         } else { // user unchecked the checkbox
             incompleteTasksList.appendChild(taskItem);
         }
