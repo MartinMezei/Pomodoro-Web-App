@@ -12,10 +12,10 @@ document.getElementById("todo-toggle-button").addEventListener("click",function(
 
     if (todoListVisible){
         document.getElementById("todo-list").style.display = "block";
-        document.getElementById("todo-toggle-button").textContent = "Hide To-Do List";
+        document.getElementById("todo-toggle-button").textContent = "Hide Task List";
     } else {
         document.getElementById("todo-list").style.display = "none";
-        document.getElementById("todo-toggle-button").textContent = "Show To-Do List";
+        document.getElementById("todo-toggle-button").textContent = "Show Task List";
     }
 });
 

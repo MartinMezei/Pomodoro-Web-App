@@ -34,9 +34,9 @@ function addNewTask(userInput) {
     taskDescription.textContent = `${userInput}`;
     deleteBtn.textContent = "🗑️";
     // appending new elements listItem
+    listItem.appendChild(deleteBtn);
     listItem.appendChild(checkbox);
     listItem.appendChild(taskDescription);
-    listItem.appendChild(deleteBtn);
     // appending new task to taskList
     incompleteTasksList.appendChild(listItem);
 
@@ -92,6 +92,24 @@ document.getElementById("add-task-button").addEventListener("click", function ()
         inputBackToOriginalState();
         addNewTask(userInput);
     }
+});
+
+//**Adding tasks via Enter key**//
+document.getElementById("add-task-input").addEventListener("keypress", function (event) {
+
+    let userInput = getUserInput();
+
+    if (event.key == "Enter") {
+        if (userInput === '' || userInput === null) {
+            inputErrorHandler(1);
+        } else if (userInput.length > 30) {
+            inputErrorHandler(2);
+        } else { // input valid
+            inputBackToOriginalState();
+            addNewTask(userInput);
+        }
+    }
+
 });
 
 //**Actions performed in task lists**//

@@ -9,6 +9,7 @@ html {
     font-family: "Quicksand", sans-serif;
     font-weight: 600;
     font-size: clamp(10px, 0.8vw, 20px);
+    text-wrap: balance;
     text-shadow: 4px 2px 15px #B25CA0;
 }
 
@@ -17,7 +18,7 @@ body {
     width: 100%;
     background-image: url("../images/neon-city-bg.jpg");
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
@@ -30,7 +31,7 @@ button {
     padding: 1rem;
 
     color: white;
-    font-size: 1.2rem;
+    font-size: clamp(25px,1.2rem,30px);
     font-weight: 600;
 
     border: 1px solid #B25CA0;
@@ -51,17 +52,35 @@ button:hover {
 /** MAIN SITE CONTENT LAYOUT **/
 
 main {
-    height: 30rem;
+    height: 70vh;
     width: 80%;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(800px,1fr));
+    justify-items: center; */
     display: flex;
-    flex-wrap: wrap;
+    flex-grow: 0;
     justify-content: center;
-    gap: 10rem;
+    gap: 5rem;
 }
 
-main>section {
-    width: 40%;
-    height: 100%;
+/* styles for #timer and #todo-list sections */
+/* these styles manage the layout and other common settings for both sections */
+/* note: other styles specific to each section are located further down the code */
+#timer, #todo-list{
+    min-width: 45rem;
+    max-height: 55rem;
+    min-height: 30%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+    color: white;
+    padding: 3rem;
+    border: 2px solid #2E113A;
+    border-radius: 5%;
+    background-color: rgba(46, 17, 58, 0.4);
 }
 
 /** HEADER STYLE **/
@@ -69,12 +88,14 @@ main>section {
 header {
     box-sizing: border-box;
     width: 100%;
-    padding: 1rem 10rem;
-    margin-bottom: 10vh;
+    min-height: 10rem;
+    margin-bottom: 5rem;
+    padding: 1rem 0rem;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
+    justify-items: center;
 
     background-color: rgba(46, 17, 58, 0.6);
     border-bottom: 2px solid #2E113A;
@@ -83,6 +104,7 @@ header {
 /* logo image */
 header img {
     height: 8rem;
+    width: 8rem;
     background-color: white;
     border: solid transparent;
     border-radius: 50%;
@@ -91,7 +113,11 @@ header img {
 #site-logo {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 9rem;
+    height: 9rem;
     transition: 0.4s;
+    padding: 0rem;
 }
 
 #site-logo:hover {
@@ -101,7 +127,7 @@ header img {
 /* header title */
 
 #site-title h1 {
-    font-size: 5rem;
+    font-size: clamp(20px,5rem,100px);
     text-align: center;
 }
 
@@ -109,31 +135,34 @@ header img {
 #header-buttons {
     display: flex;
     justify-content: center;
-    gap: 1.2rem
+    gap: 1.2rem;
+    width: max-content;
 }
 
 
 /** TO-DO LIST **/
 
-#todo-list h3 {
-    font-size: 2.5rem;
-    text-align: left;
-}
-
 
 #todo-list h2 {
-    font-size: 5rem;
+    font-size: clamp(50px,5rem,100px);
     text-align: center;
     padding-bottom: 1rem;
 }
 
+#todo-list h3 {
+    font-size: clamp(40px,2.5rem,70px);
+    text-align: left;
+}
+
+
 /* Task adding */
 #add-task-input-wrapper {
-    height: 2.2rem;
+    height: 2.5rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     gap: 0.5rem;
-    font-size: 1.5rem;
+    font-size: clamp(20px,1.5rem,30px);
     margin-bottom: 2rem;
 }
 
@@ -143,8 +172,9 @@ header img {
 
 #add-task-input {
     flex-grow: 1;
-    padding: 1rem;
-    font-size: 1.3rem;
+    padding: 0rem 0.5rem;
+    font-size: clamp(16px,1.3rem,30px);
+    height: 100%;
     color: white;
     background-color: transparent;
     border-radius: 0.5rem;
@@ -157,7 +187,7 @@ header img {
 }
 
 #add-task-button {
-    width: 2rem;
+    width: 2.5rem;
     height: 100%;
     border-radius: 0.5rem;
     padding: 0rem;
@@ -181,11 +211,6 @@ header img {
     overflow: auto;
 }
 
-/* style of list items in completed tasks list */
-#complete-tasks-list p {
-    text-decoration: line-through;
-    opacity: 0.8;
-}
 
 /* styling of task list items */
 .task-list li {
@@ -194,8 +219,14 @@ header img {
     justify-content: left;
     align-items: center;
     margin: 0.5rem 0rem;
-    font-size: 1.7rem;
+    font-size: clamp(16px,1.7rem,50px);
     list-style: none;
+}
+
+/* style of list items in completed tasks list */
+#complete-tasks-list p {
+    text-decoration: line-through;
+    opacity: 0.8;
 }
 
 /* all items in inside of a task list item have no margin or padding */
@@ -206,8 +237,8 @@ header img {
 
 /* checkbox styling */
 .task-list li input {
-    width: 1.2rem;
-    height: 1.2rem;
+    min-width: 1.2rem;
+    min-height: 1.2rem;
 }
 
 /* To-do list delete button styling */
@@ -215,8 +246,8 @@ header img {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
+    min-width: 2rem;
+    min-height: 2rem;
     border-radius: 0.5rem;
     padding: 0rem;
     font-size: 1rem;
@@ -224,38 +255,31 @@ header img {
 
 /** TIMER **/
 
-#timer,
-#todo-list {
-    text-align: center;
-    color: white;
-    padding: 3rem;
-    border: 2px solid #2E113A;
-    border-radius: 5%;
-    background-color: rgba(46, 17, 58, 0.4)
-}
-
 #timer * {
     display: block;
+    margin-bottom: 0.25rem;
 }
 
 #current-mode-display {
-    font-size: 5rem;
+    font-size: clamp(70px,5rem,100px);
 }
 
 #big-timer {
-    font-size: 5rem;
+    font-size: clamp(70px,5rem,100px);
 }
 
 
 #small-timer,
 #total-time-studied {
-    font-size: 4rem;
+    font-size: clamp(16px,4rem,80px);
 }
 
 #buttons-wrapper {
-    padding-top: 1rem;
+    padding-top: 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
 }
 
 
@@ -281,12 +305,16 @@ header img {
     position: absolute;
     bottom: 5%;
     right: 2.5%;
-    height: 5rem;
-    width: 5rem;
+    height: 4rem;
+    width: 4rem;
 }
 
 #full-screen-btn svg {
     margin: auto;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2rem;
+    width: 2rem;
 }
+
+
+
+/**RESPONSIVNESS**/
