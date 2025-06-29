@@ -1,3 +1,0 @@
-pridat vytvorenie tasku stlacenim ENTER
-pridat to ze ak je popis prilis dlhy tak sa za nim objavia 3 bodky
-pridat potrebu potvrdenia od uzivatela ak bude chciet odstranit button
