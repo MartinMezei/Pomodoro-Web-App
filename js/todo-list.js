@@ -7,9 +7,12 @@ const taskCompleteAudio = new Audio("../sounds/task-complete.mp3");
 const incompleteTasksList = document.getElementById("incomplete-tasks-list");
 const completeTasksList = document.getElementById("complete-tasks-list");
 const textInput = document.getElementById("add-task-input");
-// currentTaskId is not to be decremented because there is a possibility of task id duplicates
-// with each currentTaskId increment a new id is created
+
+// !currentTaskId is not to be decremented because there is a possibility of task id duplicates
+// with each currentTaskId increment a new id is created, so no duplicity is possible even after deleting a task
 let currentTaskId = 0;
+
+// !these might be used in the future
 // let incompleteTasksCounter = 0;
 // let completeTasksCounter = 0;
 
@@ -85,9 +88,9 @@ document.getElementById("add-task-button").addEventListener("click", function ()
 
     let userInput = getUserInput(); // input from add-task-input
 
-    if (userInput === '' || userInput === null) { // no input found
+    if (userInput === '' || userInput === null) {
         inputErrorHandler(1);
-    } else if (userInput.length > 30) { // input is too long
+    } else if (userInput.length > 30) {
         inputErrorHandler(2);
     } else { // input valid
         inputBackToOriginalState();
@@ -115,24 +118,24 @@ document.getElementById("add-task-input").addEventListener("keypress", function 
 
 //**Actions performed in task lists**//
 document.getElementById("tasks-lists-wrapper").addEventListener("click", function (event) {
-    if (event.target.className == "delete-task-button") { // deletion of tasks
-        let taskChildElement = event.target; // gets a specific deleteBtn
-        let taskToRemove = taskChildElement.parentElement; // finds its parent
-        taskToRemove.remove(); //removes the task
+    if (event.target.className == "delete-task-button") {
+        let taskChildElement = event.target;
+        let taskToRemove = taskChildElement.parentElement;
+        taskToRemove.remove();
     }
 });
 
 document.getElementById("tasks-lists-wrapper").addEventListener("change", function (event) {
-    if (event.target.type == "checkbox") { // checking and unchecking tasks
-        let taskChildElement = event.target; // gets a specific checkbox
-        let taskItem = taskChildElement.parentElement; // finds its parent
+    if (event.target.type == "checkbox") {
+        let taskChildElement = event.target;
+        let taskItem = taskChildElement.parentElement;
 
-        if (taskChildElement.checked) { //user checked the checkbox
+        if (taskChildElement.checked) {
             completeTasksList.appendChild(taskItem);
             if (soundOn){
                 taskCompleteAudio.play();
             }
-        } else { // user unchecked the checkbox
+        } else {
             incompleteTasksList.appendChild(taskItem);
         }
     }

@@ -10,7 +10,7 @@ const intervalCompleteAudio = new Audio("../sounds/interval-complete.mp3");
 // implicit value of longBreak is 10 minutes
 // lenght of each mode can be changed the by user in the settings menu
 
-let focusTime = 25;
+let focusTime = 0.1;
 let shortBreak = 5;
 let longBreak = 10;
 
