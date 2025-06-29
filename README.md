@@ -1,6 +1,6 @@
-# Pomodoro-Web-App
-Pomodoro studying technique web site
+# Focus Time
+Focus Time is a simple web app that uses the Pomodoro Technique to help you study efficiently.
 
-This repo contains source codes for a pomodoro technique web site. More features are planned for the future such as TO-DO list, modifiable theme or some kind of a progress tracker
+App has a pauseable pomodoro timer and a simple todo list to track progress. More features are to be added in the future such as customizable time intervals, other settings and changable themes.
 
-I will use HTML, CSS and JS for the frontend.
+For the frontend JS, HTML and CSS are used.
