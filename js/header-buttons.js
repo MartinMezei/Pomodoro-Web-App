@@ -1,15 +1,13 @@
-// todo : implement changes of settings menu visibility
-
-export let soundOn = true;
-let settingsVisible = false;
+// settings button logic is implemented in setting.js
+export let soundOn = true
 let todoListVisible = true;
 
 //**Changing todo lists visibility**//
 
-document.getElementById("todo-toggle-button").addEventListener("click",function(){
+document.getElementById("todo-toggle-button").addEventListener("click", function () {
     todoListVisible = !todoListVisible;
 
-    if (todoListVisible){
+    if (todoListVisible) {
         document.getElementById("todo-list").style.display = "block";
         document.getElementById("todo-toggle-button").textContent = "Hide Task List";
     } else {
@@ -23,7 +21,6 @@ document.getElementById("todo-toggle-button").addEventListener("click",function(
 document.getElementById("sound-toggle-button").addEventListener("click", function () {
     soundOn = !soundOn;
 
-    // todo: add music of and music on icons
     if (soundOn) {
         document.getElementById("sound-toggle-button").textContent = "Sound Off";
     } else {
@@ -32,4 +29,3 @@ document.getElementById("sound-toggle-button").addEventListener("click", functio
 
 });
 
-// todo : settings button

@@ -1,18 +1,12 @@
-// todo : implement a way to get user input from settings menu
-// todo : switch implicit time values in minutes with a time variable
 
 //**GLOBAL VARIABLES**//
 import { soundOn } from "./header-buttons.js";
+// time of each interval is exported from settings.js 
+// there for each value it is checked if there are any values in local storage and if there are not any
+// a default is assigned
+import {focusTime, shortBreak, longBreak} from "./settings.js";
 const intervalCompleteAudio = new Audio("../sounds/interval-complete.mp3");
-
-// implicit value of focusTime is 25 minutes
-// implicit value of shortBreak is 5 minutes
-// implicit value of longBreak is 10 minutes
-// lenght of each mode can be changed the by user in the settings menu
-
-let focusTime = 25;
-let shortBreak = 5;
-let longBreak = 10;
+intervalCompleteAudio.volume = localStorage.getItem("soundVolume")/100 || 0.5;
 
 let timerOn = false; // used to check if timer is running, implicit value is false
 let fullFocusCount = 0; // counts how many full focus cycles were done to calculate time spent studying
