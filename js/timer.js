@@ -2,34 +2,29 @@
 //**GLOBAL VARIABLES**//
 import { soundOn } from "./header-buttons.js";
 // time of each interval is exported from settings.js 
-// there for each value it is checked if there are any values in local storage and if there are not any
-// a default is assigned
-import {focusTime, shortBreak, longBreak} from "./settings.js";
+// there for each value it is checked if there are any values in local storage and if there are not any a default value is assigned
+import { focusTime, shortBreak, longBreak } from "./settings.js";
 const intervalCompleteAudio = new Audio("../sounds/interval-complete.mp3");
-intervalCompleteAudio.volume = localStorage.getItem("soundVolume")/100 || 0.5;
+intervalCompleteAudio.volume = localStorage.getItem("soundVolume") / 100 || 0.5;
 
 let timerOn = false; // used to check if timer is running, implicit value is false
-let fullFocusCount = 0; // counts how many full focus cycles were done to calculate time spent studying
+let fullFocusTimeSpent = 0; // total time spent in full focus in secs
 
 // timer mode values:
 // 0 - focus mode
 // 1 - short break mode
 // 2 - long break mode
 let timerMode = 0; // by default timer mode is set to focus mode
-let defaultModeTime = focusTime * 60; // currentModeTime is set to 25 by default
-let timeRemaining = defaultModeTime // time remaining in the timer countdown, by default set to the value of currentModeTime
-document.getElementById("big-timer").textContent = timeFormatter(defaultModeTime);
+let currentModeTime = focusTime * 60; // currentModeTime is set to 25 by default
+let timeRemaining = currentModeTime // time remaining in the timer countdown, by default set to the value of currentModeTime
+document.getElementById("big-timer").textContent = timeFormatter(currentModeTime);
+document.getElementById("small-timer").textContent = `${timeFormatter(sessionStorage.getItem("fullFocusTimeSpent"))}`;
 
 //**FUNCTION DEFINITIONS**//
 
-// calculates current total full focus time and displays it on the website
-// uses twoNumFormatter to correct the time format to mm:ss if needed
-function timeSpentStudyingHandler(focusTime) {
-
-    let totalFocusTime = focusTime * fullFocusCount; // calculates how many minutes has the user spent in full focus
-    let displayedTime = twoNumFormatter(totalFocusTime); // formatting of time displayed
-
-    document.getElementById("small-timer").textContent = `${displayedTime}:00`; // displays total time spent in focus mode on the website
+// displays total time spent in full focus on the small timer
+function timeSpentStudyingHandler() {
+    document.getElementById("small-timer").textContent = `${timeFormatter(fullFocusTimeSpent)}`; // displays total time spent in focus mode on the website
 }
 
 // this function is called after switching between timer modes or after the countdown runs out
@@ -37,9 +32,9 @@ function timeSpentStudyingHandler(focusTime) {
 function reset() {
     document.getElementById("timer-toggle-button").textContent = "Start";
     timerOn = false;
-    timeRemaining = defaultModeTime;
-    let displayedTime = twoNumFormatter(defaultModeTime / 60); // correcting time format
-    document.getElementById("big-timer").textContent = `${displayedTime}:00`; // displaying the time in correct format
+    timeRemaining = currentModeTime;
+    let displayedTime = timeFormatter(currentModeTime);
+    document.getElementById("big-timer").textContent = `${displayedTime}`;
 }
 
 // if needed this function creates a formatted string to add a 0 before seconds or minutes in the timer
@@ -89,7 +84,8 @@ async function countDown() {
     }
     // countdown ended successfully
     if (timerMode == 0) {
-        fullFocusCount++; // one full focus cycle was completed
+        fullFocusTimeSpent += focusTime * 60;
+        sessionStorage.setItem("fullFocusTimeSpent", fullFocusTimeSpent);
         timeSpentStudyingHandler(focusTime); // calculates current total full focus time and displays it on the website
     }
 
@@ -109,11 +105,13 @@ function delay(ms) {
 // timer mode changed to focus
 document.getElementById("focus-button").onclick = function () {
 
-    document.getElementById("current-mode-display").textContent = "Full Focus";
-
     // mode charateristics are set
     timerMode = 0;
-    defaultModeTime = focusTime * 60;
+    currentModeTime = focusTime * 60;
+
+    document.getElementById("current-mode-display").textContent = "Full Focus";
+    document.getElementById("big-timer").textContent = timeFormatter(currentModeTime);
+
 
     // timer is reset to its original state
     reset();
@@ -126,7 +124,7 @@ document.getElementById("short-break-button").onclick = function () {
 
     // mode charateristics are set
     timerMode = 1; // short break mode value
-    defaultModeTime = shortBreak * 60 // time based on the mode is converted to secs
+    currentModeTime = shortBreak * 60 // time based on the mode is converted to secs
 
     // timer is reset to its original state
     reset();
@@ -139,7 +137,7 @@ document.getElementById("long-break-button").onclick = function () {
 
     // mode charateristics are set
     timerMode = 2; // long break mode value
-    defaultModeTime = longBreak * 60 // time based on the mode is converted to secs
+    currentModeTime = longBreak * 60 // time based on the mode is converted to secs
 
     // timer is reset to its original state
     reset();

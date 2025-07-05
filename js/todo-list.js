@@ -3,7 +3,16 @@
 //**GLOBAL VARIABLES**//
 import {soundOn} from "./header-buttons.js";
 const taskCompleteAudio = new Audio("../sounds/task-complete.mp3");
-taskCompleteAudio.volume = localStorage.getItem("soundVolume")/100 || 0.5;
+
+if (localStorage.getItem("soundVolume")/100 == 0.01) {
+    taskCompleteAudio.volume = 0;
+} else if (!localStorage.getItem("soundVolume")) {
+    taskCompleteAudio.volume = 0.5;
+} else {
+    taskCompleteAudio.volume = localStorage.getItem("soundVolume")/100;
+}
+
+console.log(taskCompleteAudio.volume);
 
 const incompleteTasksList = document.getElementById("incomplete-tasks-list");
 const completeTasksList = document.getElementById("complete-tasks-list");
@@ -80,7 +89,7 @@ function inputErrorHandler(errorCode) {
 // changes everything so input is set to its original state after adding a new task
 function inputBackToOriginalState() {
     textInput.value = "";
-    textInput.style.borderColor = "#B25CA0"
+    textInput.style.borderColor = "--decoration-color"
     textInput.placeholder = "Task Description Here"
 }
 

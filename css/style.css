@@ -1,3 +1,13 @@
+:root {
+    --text-color: "";
+    --decoration-color: "";
+    --button-hover-text-color:  "";
+    --content-bg-color:  "";
+    --content-border-color:  "";
+    --page-bg-image:  "";
+}
+
+
 * {
     margin: 0rem 0rem;
     padding: 0rem;
@@ -5,18 +15,18 @@
 
 
 html {
-    color: white;
+    color: var(--text-color);
     font-family: "Quicksand", sans-serif;
     font-weight: 600;
     font-size: clamp(10px, 0.8vw, 20px);
     text-wrap: balance;
-    text-shadow: 4px 2px 15px #B25CA0;
+    text-shadow: 4px 2px 15px var(--decoration-color);
 }
 
 body {
     min-height: 100vh;
     width: 100%;
-    background-image: url("../images/neon-city-bg.jpg");
+    background-image: var(--page-bg-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -30,11 +40,11 @@ button {
     font-family: "Quicksand", sans-serif;
     padding: 1rem;
 
-    color: white;
+    color: var(--text-color);
     font-size: clamp(16px, 1.2rem, 30px);
     font-weight: 600;
 
-    border: 1px solid #B25CA0;
+    border: 1px solid var(--decoration-color);
     border-radius: 1rem;
 
     background-color: transparent;
@@ -42,10 +52,10 @@ button {
 }
 
 button:hover {
-    color: #683DB3;
+    color: var(--button-hover-text-color);
     transform: scale(1.05);
-    background-color: #B25CA0;
-    box-shadow: 0px 0px 10px 2px #B25CA0;
+    background-color: var(--decoration-color);
+    box-shadow: 0px 0px 10px 2px var(--decoration-color);
     cursor: pointer;
 }
 
@@ -54,9 +64,6 @@ button:hover {
 main {
     height: 70vh;
     width: 80%;
-    /* display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(800px,1fr));
-    justify-items: center; */
     display: flex;
     flex-grow: 0;
     justify-content: center;
@@ -77,11 +84,11 @@ main {
     justify-content: center;
 
     text-align: center;
-    color: white;
+    color: var(--text-color);
     padding: 3rem;
-    border: 2px solid #2E113A;
+    border: 2px solid var(--content-border-color);
     border-radius: 5%;
-    background-color: rgba(46, 17, 58, 0.4);
+    background-color: var(--content-bg-color);
 }
 
 /** HEADER STYLE **/
@@ -98,8 +105,8 @@ header {
     align-items: center;
     justify-items: center;
 
-    background-color: rgba(46, 17, 58, 0.6);
-    border-bottom: 2px solid #2E113A;
+    background-color: var(--content-bg-color);
+    border-bottom: 2px solid var(--content-border-color);
 }
 
 /* logo image */
@@ -176,14 +183,14 @@ header img {
     padding: 0rem 0.5rem;
     font-size: clamp(16px, 1.3rem, 30px);
     height: 100%;
-    color: white;
+    color: var(--text-color);
     background-color: transparent;
     border-radius: 0.5rem;
-    border-color: #B25CA0;
+    border-color: var(--decoration-color);
 }
 
 #add-task-input::placeholder {
-    color: white;
+    color: var(--text-color);
     opacity: 0.9;
 }
 
@@ -295,7 +302,7 @@ header img {
     height: 65vh;
     padding: 4rem;
     background-color: rgb(20, 20, 20);
-    border: solid #2E113A 2px;
+    border: solid var(--content-border-color) 2px;
     border-radius: 5%;
     opacity: 0;
 }
@@ -327,7 +334,7 @@ header img {
 
 #close-settings:hover {
     background-color: tomato;
-    color: white;
+    color:var(--text-color);
     cursor: pointer;
 }
 
@@ -369,6 +376,7 @@ header img {
 }
 
 .settings-item input {
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -387,38 +395,30 @@ header img {
     font-size: 1.2rem;
     padding-left: 1rem;
     background-color: transparent;
-    border: 1px solid #B25CA0;
+    border: 1px solid var(--decoration-color);
     border-radius: 10px;
-    color: white;
+    color: var(--text-color);
 }
 
 #timer-settings-wrapper input:hover {
-    background-color: #B25CA0;
+    background-color: var(--decoration-color);
 }
 
-/* sound settings */
-
-#sound-settings-wrapper .settings-item:first-of-type input {
-    width: 1.2rem;
-    height: 1.2rem;
-    margin-left: 1rem;
-}
-
-/* site theme settings */
+/* site theme selection settings */
 #theme-select {
     width: 100%;
     height: 100%;
     background-color: transparent;
-    border: 1px solid #B25CA0;
+    border: 1px solid var(--decoration-color);
     border-radius: 10px;
     padding-left: 0.5rem;
-    color: white;
+    color: var(--text-color);
     font-size: 1.2rem;
 }
 
 #theme-select option {
-    background-color: #2E113A;
-    color: white;
+    background-color: rgb(20, 20, 20);
+    color: var(--text-color);
 }
 
 

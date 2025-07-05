@@ -18,11 +18,13 @@ document.getElementById("todo-toggle-button").addEventListener("click", function
 
 //**Sounds mute and unmute**//
 
+// toggling sound effects via a button in header
 document.getElementById("sound-toggle-button").addEventListener("click", function () {
     soundOn = !soundOn;
 
     if (soundOn) {
         document.getElementById("sound-toggle-button").textContent = "Sound Off";
+        document.getElementById("sound-toggle").checked = false;
     } else {
         document.getElementById("sound-toggle-button").textContent = "Sound On";
     }
